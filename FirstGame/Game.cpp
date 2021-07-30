@@ -27,9 +27,14 @@ Game::Game(QWidget *parent) {
 	int bottomY = height() - playerHeight;
 	player->setPos(centerX, bottomY);
 
+	// Create scoring
+	score = new Score();
+	scene->addItem(score);
+
 	// Spawn enemies
 	QTimer* enemy_spawn = new QTimer();
 	QObject::connect(enemy_spawn, SIGNAL(timeout()), player, SLOT(spawn()));
+
 	enemy_spawn->start(2000);
 
 	show();

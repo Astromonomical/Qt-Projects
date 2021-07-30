@@ -19,7 +19,6 @@ void Player::keyPressEvent(QKeyEvent *event) {
 }
 
 void Player::spawn() {
-	qDebug() << "Enemy inbound";
 	Enemy *enemy = new Enemy();
 	scene()->addItem(enemy);
 }
