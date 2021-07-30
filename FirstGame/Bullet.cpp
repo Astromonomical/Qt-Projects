@@ -1,5 +1,7 @@
 #include "Bullet.h"
 
+#include <QDebug>
+
 Bullet::Bullet() {
 	// Draw rectangle
 	setRect(0, 0, 10, 50);
@@ -16,11 +18,11 @@ void Bullet::move() {
 
 	// Check for contact
 	QList<QGraphicsItem*> colliding_items = collidingItems();
-	for (QGraphicsItem *item : colliding_items) {
-		if (typeid(item) == typeid(Enemy)) {
-			scene()->removeItem(item);
+	for (int i = 0; i < colliding_items.size(); i++) {
+		if (typeid(*colliding_items[i]) == typeid(Enemy)) {
+			scene()->removeItem(colliding_items[i]);
 			scene()->removeItem(this);
-			delete item;
+			delete colliding_items[i];
 			delete this;
 			return;
 		}
