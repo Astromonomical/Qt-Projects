@@ -14,4 +14,3 @@ public:
 public slots:
 	void move();
 };
-
