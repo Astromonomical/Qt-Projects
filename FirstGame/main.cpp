@@ -15,7 +15,6 @@
 * - QGraphicsItem	(QGraphicsRecItem)
 * - QGraphicsView
 */
-
 #include "Game.h"
 
 Game* game;
