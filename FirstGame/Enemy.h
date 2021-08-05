@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Game.h"
+
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QTimer>

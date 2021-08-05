@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Player.h"
+#include "Health.h"
+#include "Score.h"
 
 #include <QApplication>
 #include <QGraphicsScene>
@@ -9,7 +11,6 @@
 #include <QRandomGenerator>
 #include <QTimer>
 #include <QObject>
-#include "Score.h"
 
 class Game : public QGraphicsView {
 
@@ -18,5 +19,6 @@ public:
 	QGraphicsScene* scene;
 	Player* player;
 	Score* score;
+	Health* health;
 };
 

@@ -31,6 +31,11 @@ Game::Game(QWidget *parent) {
 	score = new Score();
 	scene->addItem(score);
 
+	// Create health
+	health = new Health();
+	scene->addItem(health);
+	health->setPos(health->x(), health->y() + 25);
+
 	// Spawn enemies
 	QTimer* enemy_spawn = new QTimer();
 	QObject::connect(enemy_spawn, SIGNAL(timeout()), player, SLOT(spawn()));
