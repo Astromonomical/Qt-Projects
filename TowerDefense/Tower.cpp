@@ -3,5 +3,6 @@
 
 Tower::Tower(QGraphicsItem *parent) {
 	// set the graphics
-	setPixmap(QPixmap(""));
+	setPixmap(QPixmap(":/images/Tesla.png"));
+	
 }
