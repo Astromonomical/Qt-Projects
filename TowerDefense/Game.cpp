@@ -4,6 +4,7 @@
 Game::Game() {
 	// Create a scene
 	scene = new QGraphicsScene(this);
+	scene->setSceneRect(0, 0, 800, 800);
 
 	// set the scene
 	setScene(scene);
@@ -14,5 +15,7 @@ Game::Game() {
 	// add the tower
 	scene->addItem(t);
 
-	setFixedSize(800, 600);
+	// disable scroll policies
+	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
