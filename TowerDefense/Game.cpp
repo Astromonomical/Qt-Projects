@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Tower.h"
+#include "Projectile.h"
 
 Game::Game() {
 	// Create a scene
@@ -11,6 +12,7 @@ Game::Game() {
 
 	// create a tower
 	Tower* t = new Tower();
+	t->setPos(250, 250);
 
 	// add the tower
 	scene->addItem(t);
@@ -18,4 +20,12 @@ Game::Game() {
 	// disable scroll policies
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+}
+
+void Game::mousePressEvent(QMouseEvent* event) {
+	// create a bullet
+	Projectile* projectile = new Projectile();
+	projectile->setPos(event->pos());
+	projectile->setRotation(40);
+	scene->addItem(projectile);
 }

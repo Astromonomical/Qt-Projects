@@ -1,5 +1,9 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>Tesla.png</file>
-    </qresource>
+  <qresource prefix="/images">
+    <file>Tesla.png</file>
+  </qresource>
+  <qresource prefix="/projectiles">
+    <file>arrow.png</file>
+    <file>energy.png</file>
+  </qresource>
 </RCC>
