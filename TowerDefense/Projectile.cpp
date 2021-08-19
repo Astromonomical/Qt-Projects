@@ -5,13 +5,13 @@ Projectile::Projectile(QGraphicsItem* parent) {
 	setPixmap(QPixmap(":/projectiles/arrow.png"));
 
 	// set the speed
-	projectile_speed = 30;
+	projectile_speed = 15;
 
 	// connect a timer to move()
 	QTimer* move_timer = new QTimer(this);
 	connect(move_timer, SIGNAL(timeout()), this, SLOT(move()));
 
-	move_timer->start(50);
+	move_timer->start(25);
 }
 
 void Projectile::move() {

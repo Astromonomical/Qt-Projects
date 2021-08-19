@@ -12,7 +12,7 @@ Game::Game() {
 
 	// create a tower
 	Tower* t = new Tower();
-	t->setPos(250, 250);
+	t->setPos(300, 300);
 
 	// add the tower
 	scene->addItem(t);
