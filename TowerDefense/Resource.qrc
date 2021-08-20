@@ -2,6 +2,9 @@
   <qresource prefix="/images">
     <file>Tesla.png</file>
   </qresource>
+  <qresource prefix="/enemies">
+    <file>enemy.png</file>
+  </qresource>
   <qresource prefix="/projectiles">
     <file>arrow.png</file>
     <file>energy.png</file>

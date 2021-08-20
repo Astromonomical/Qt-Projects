@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Tower.h"
 #include "Projectile.h"
+#include "Enemy.h"
 
 Game::Game() {
 	// Create a scene
@@ -20,6 +21,11 @@ Game::Game() {
 	// disable scroll policies
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+	// create enemy
+	Enemy* enemy = new Enemy();
+	enemy->setPos(0, 0);
+	scene->addItem(enemy);
 }
 
 void Game::mousePressEvent(QMouseEvent* event) {
