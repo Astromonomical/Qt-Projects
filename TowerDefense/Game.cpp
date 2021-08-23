@@ -24,7 +24,7 @@ Game::Game() {
 
 	// create enemy
 	Enemy* enemy = new Enemy();
-	enemy->setPos(0, 0);
+	enemy->setPos(300, 157);
 	scene->addItem(enemy);
 }
 

@@ -29,9 +29,6 @@ Tower::Tower(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent) {
 	int x = pix_x - radius;
 	int y = pix_y - radius;
 
-	// setup a temporary target
-	_target = QPointF(400, 400);
-
 	// draw attack area
 	_attack_area = new QGraphicsEllipseItem(x, y, diameter, diameter, this);
 
