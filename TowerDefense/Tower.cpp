@@ -1,5 +1,6 @@
 #include "Tower.h"
 #include "Game.h"
+#include "Enemy.h"
 #include <QDebug>
 
 extern Game* game;
@@ -14,6 +15,7 @@ Tower::Tower(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent) {
 	int level = 0;
 	int diameter = 300 + (level * LEVEL_FACTOR);
 	int radius = diameter / 2;
+	_has_target = false;
 	_attack_rate = 1000;
 	_height = size.height();
 	_width = size.width();
@@ -35,7 +37,7 @@ Tower::Tower(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent) {
 
 	// connect an attack timer
 	QTimer* timer = new QTimer();
-	connect(timer, SIGNAL(timeout()), this, SLOT(attack_target()));
+	connect(timer, SIGNAL(timeout()), this, SLOT(acquire_target()));
 	timer->start(_attack_rate);
 }
 
@@ -54,4 +56,38 @@ void Tower::attack_target() {
 
 	round->setRotation(angle);
 	game->scene->addItem(round);
+}
+
+double Tower::distanceTo(QGraphicsItem* item) {
+	QLineF ln(pos(), item->pos());
+	return ln.length();
+}
+
+void Tower::acquire_target() {
+	// Get list of all colliding objects
+	QList<QGraphicsItem*> colliding_items = _attack_area->collidingItems();
+
+	// If colliding items only has 1 (itself), return
+	if (colliding_items.size() == 1) {
+		_has_target = false;
+		return;
+	}
+
+	double closest_distance = 300;
+	QPointF closest_pt = QPointF(0, 0);
+	for (size_t i = 0; i < colliding_items.size(); i++) {
+		Enemy* enemy = dynamic_cast<Enemy*>(colliding_items[i]);
+
+		if (enemy) {
+			double this_distance = distanceTo(enemy);
+			if (this_distance < closest_distance) {
+				closest_distance = this_distance;
+				closest_pt = QPointF(colliding_items[i]->pos());
+				_has_target = true;
+			}
+		}
+	}
+
+	_target = closest_pt;
+	attack_target();
 }

@@ -8,11 +8,9 @@ Enemy::Enemy(QGraphicsItem* parent) {
 	setPixmap(image.scaled(50, 50, Qt::KeepAspectRatio));
 
 	// Set points
-	_points << QPointF(500, 500) << QPointF(0, 0);
+	_points << QPointF(250, 250) << QPointF(100,50) << QPointF(0, 0);
 	_point_index = 0;
 	_dest = _points[_point_index];
-	qDebug() << _dest.x() << "  " << _dest.y();
-	qDebug() << x() << "  " << y();
 	rotateToPoint(_dest);
 
 	// connect timer for movement
@@ -31,10 +29,10 @@ void Enemy::moveForward() {
 	// check if close to dest
 	QLineF ln(pos(), _dest);
 	rotateToPoint(_dest);
-	if (ln.length() < 5) {
+	qDebug() << ln.length();
+	if (ln.length() < 25) {
 		_point_index++;
-
-		if (_point_index > _points.size()) {
+		if (_point_index == _points.size()) {
 			
 			_point_index = 0;
 		}
@@ -43,7 +41,7 @@ void Enemy::moveForward() {
 		rotateToPoint(_dest);
 	}
 
-	_speed = 3;
+	_speed = 2;
 	double theta = rotation(); // degrees
 
 	// calculate change in x and y
