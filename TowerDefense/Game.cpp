@@ -18,6 +18,9 @@ Game::Game() {
 	// add the tower
 	scene->addItem(t);
 
+	// set cursor
+	cursor = nullptr;
+
 	// disable scroll policies
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -26,12 +29,32 @@ Game::Game() {
 	Enemy* enemy = new Enemy();
 	enemy->setPos(300, 157);
 	scene->addItem(enemy);
+
+	// test code 
+	setCursor(":/images/Tesla.png");
+	setMouseTracking(true);
 }
 
 void Game::mousePressEvent(QMouseEvent* event) {
-	// create a bullet
 	Projectile* projectile = new Projectile();
+	
 	projectile->setPos(event->pos());
-	projectile->setRotation(40);
 	scene->addItem(projectile);
+}
+
+void Game::mouseMoveEvent(QMouseEvent* event) {
+	if (cursor) {
+		cursor->setPos(event->pos());
+	}
+}
+
+void Game::setCursor(QString filename) {
+	if (cursor) {
+		scene->removeItem(cursor);
+		delete cursor;
+	}
+
+	cursor = new QGraphicsPixmapItem();
+	cursor->setPixmap(filename);
+	scene->addItem(cursor);
 }

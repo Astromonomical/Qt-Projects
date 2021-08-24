@@ -31,6 +31,7 @@ Tower::Tower(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent) {
 
 	// draw attack area
 	_attack_area = new QGraphicsEllipseItem(x, y, diameter, diameter, this);
+	_attack_area->setPen(QPen(Qt::DotLine));
 
 	// connect an attack timer
 	QTimer* timer = new QTimer();
